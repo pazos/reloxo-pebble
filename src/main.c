@@ -2,8 +2,6 @@
 #include "config.h" // configuracion via web a traves da app de pebble
 #include "window.h" // interface de usuario -- window.load e window.unload
 
-
-
 // recepcion de mensaxes de entrada (recibe e aplica a configuracion)
 static void inbox_callback(DictionaryIterator *iter, void *context) {
   Tuple *t = dict_read_first(iter);

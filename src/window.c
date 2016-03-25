@@ -1,5 +1,6 @@
 #include "window.h"
 
+static int battery_level;
 static Layer *battery_layer;
 static GFont time_font, date_font, day_font;
 static TextLayer *time_layer, *date_layer, *day_layer;
@@ -8,7 +9,6 @@ static char *time_format;
 static char *nomes_dia[] = { "domingo", "luns", "martes", "mércores", "xoves", "venres", "sábado" };
 static char *nomes_mes[] = { "de xaneiro", "de febreiro", "de marzo", "de abril", "de maio", "de xuño", "de xullo",
                                "de agosto", "de setembro", "de outubro", "de novembro", "de decembro" };
-static int battery_level;
 
 static void battery_update_proc(Layer *layer, GContext *ctx) {
   GRect bounds = layer_get_bounds(layer);
@@ -32,7 +32,6 @@ static void battery_callback(BatteryChargeState state){
 static void time_callback(struct tm *tick_time, TimeUnits units_changed) {
   int mes = tick_time->tm_mon;
   int dia = tick_time->tm_wday;
-
   strftime(date_text, 10, "%e ", tick_time);
   strcat(date_text, nomes_mes[mes]);
   strcpy(day_text, nomes_dia[dia]);

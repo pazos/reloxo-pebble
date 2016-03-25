@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <center>
+    <h2>reloxo dixital</h2>
+    <p> Elixe segundo as tuas preferencias e pulsa gardar para recargar a esfera </p>
+    <table>
+      <tr><td>Mostrar dia da semana</td><td><input id='check_dia' type='checkbox'/></tr>
+      <tr><td>Mostrar dia do mes</td><td><input id='check_data' type='checkbox'/></tr>
+      <tr><td>Mostrar carga da bateria</td><td><input id='check_carga' type='checkbox'/></tr>
+      <tr><td>Invertir cores da esfera</td><td><input id='check_invertir' type='checkbox'/></tr>
+    </table>
+    <p><button id='save_button'>Gardar</button></p>
+    </center>
+    <script>
+      function persistWrite(key, value) {
+        localStorage.setItem(key, value);
+      }
+      
+      var persistRead = function(key, defaultValue) {
+        if(localStorage.getItem(key) === null) {
+          return defaultValue;
+        } else {
+          return localStorage.getItem(key);
+        }
+      };
+
+      function firstTimeSetup() {
+        if(!persistRead('first-time', false)) {
+          persistWrite('first-time', true);
+          persistWrite('dia', 'true');
+          persistWrite('data', 'true');
+          persistWrite('carga', 'true');
+          persistWrite('invertir', 'false');
+        }
+      }
+
+      function loadConfig() {
+        document.getElementById('check_dia').checked = persistRead('dia', 'false') === 'true';
+        document.getElementById('check_data').checked = persistRead('data', 'false') === 'true';
+        document.getElementById('check_carga').checked = persistRead('carga', 'false') === 'true';
+        document.getElementById('check_invertir').checked = persistRead('invertir', 'false') === 'true';
+      }
+
+      function ajax(url, type, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          callback(this.responseText);
+        };
+        xhr.open(type, url);
+        xhr.send();
+      };
+
+      var submitButton = document.getElementById('save_button');
+      submitButton.addEventListener('click', 
+        function() {
+          var options = {
+            'dia': document.getElementById('check_dia').checked ? 'true' : 'false',
+            'data': document.getElementById('check_data').checked ? 'true' : 'false',
+            'carga': document.getElementById('check_carga').checked ? 'true' : 'false',
+            'invertir': document.getElementById('check_invertir').checked ? 'true' : 'false',
+
+          };  
+          var location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+          persistWrite('dia', options.dia);
+          persistWrite('data', options.data);
+          persistWrite('carga', options.carga);
+          persistWrite('invertir', options.invertir);
+          document.location = location;
+        }, 
+      false);
+      firstTimeSetup();
+      loadConfig();
+    </script>
+  </body>
+</html>

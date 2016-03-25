@@ -1,46 +1,46 @@
 {
-  	"uuid": "be2b5393-58df-49d3-9380-bded871ccfba",
-  	"shortName": "reloxo",
-  	"longName": "reloxo dixital en galego",
-  	"companyName": "pazos",
-  	"versionLabel": "0.99",
-    "enableMultiJS": true,
-  	"watchapp": { 
-  		"watchface": true
-  	},
-  	"capabilities": [
-  		"configurable"
-  	],
-  	"appKeys": {
-      "MOSTRAR_DIA": 0,
-      "MOSTRAR_DATA": 1,
-  		"MOSTRAR_CARGA": 2,
-      "INVERTIR_CORES" : 3
-  	},
-  	"resources": { 
-  		"media": [
-  			{
-	    	"type": "font",
-	    	"name": "ROBOTO_CONDENSED_BOLD_60",
-	    	"file": "RobotoCondensed-Bold.ttf",
-	    	"compatibility": "2.7"
-	  		},
-    		{
-      		"type": "font",
-      		"name": "ROBOTO_CONDENSED_BOLD_21",
-      		"file": "RobotoCondensed-Bold.ttf",
-      		"compatibility": "2.7"
-    		},
-    		{
-      		"type": "font",
-      		"name": "ROBOTO_BOLD_26",
-      		"file": "Roboto-Bold.ttf",
-      		"compatibility": "2.7"
-    		}
-    	]
-    },
-   	"targetPlatforms": [
-   		"aplite"
+  "uuid": "be2b5393-58df-49d3-9380-bded871ccfba",
+  "shortName": "reloxo",
+  "longName": "reloxo dixital en galego, bastante configurable",
+  "companyName": "pazos",
+  "versionLabel": "1.0",
+  "enableMultiJS": true,
+  "watchapp": { 
+    "watchface": true
+  },
+  "capabilities": [
+  	"configurable"
+  ],
+  "appKeys": {
+    "MOSTRAR_DIA": 0,
+    "MOSTRAR_DATA": 1,
+  	"MOSTRAR_CARGA": 2,
+    "INVERTIR_CORES" : 3
+  },
+  "resources": { 
+  	"media": [
+  		{
+	    "type": "font",
+	    "name": "ROBOTO_CONDENSED_BOLD_60",
+	    "file": "RobotoCondensed-Bold.ttf",
+	    "compatibility": "2.7"
+	  	},
+    	{
+      	"type": "font",
+      	"name": "ROBOTO_CONDENSED_BOLD_21",
+      	"file": "RobotoCondensed-Bold.ttf",
+      	"compatibility": "2.7"
+    	},
+    	{
+      	"type": "font",
+      	"name": "ROBOTO_BOLD_26",
+      	"file": "Roboto-Bold.ttf",
+      	"compatibility": "2.7"
+    	}
+    ]
+  },
+  "targetPlatforms": [
+   	"aplite"
 	],
 	"sdkVersion": "3"
 }
