@@ -4,12 +4,16 @@
   "longName": "reloxo dixital en galego, bastante configurable",
   "companyName": "pazos",
   "versionLabel": "1.0",
+  "sdkVersion": "3",
   "enableMultiJS": true,
   "watchapp": { 
     "watchface": true
   },
   "capabilities": [
   	"configurable"
+  ],
+  "targetPlatforms": [
+    "aplite"
   ],
   "appKeys": {
     "MOSTRAR_DIA": 0,
@@ -19,28 +23,22 @@
   },
   "resources": { 
   	"media": [
-  		{
+  	{
 	    "type": "font",
 	    "name": "ROBOTO_CONDENSED_BOLD_60",
 	    "file": "RobotoCondensed-Bold.ttf",
 	    "compatibility": "2.7"
-	  	},
-    	{
-      	"type": "font",
-      	"name": "ROBOTO_CONDENSED_BOLD_21",
-      	"file": "RobotoCondensed-Bold.ttf",
-      	"compatibility": "2.7"
-    	},
-    	{
+	  },
+    {
+      "type": "font",
+      "name": "ROBOTO_CONDENSED_BOLD_21",
+      "file": "RobotoCondensed-Bold.ttf",
+      "compatibility": "2.7"
+    },
+    {
       	"type": "font",
       	"name": "ROBOTO_BOLD_26",
       	"file": "Roboto-Bold.ttf",
       	"compatibility": "2.7"
-    	}
-    ]
-  },
-  "targetPlatforms": [
-   	"aplite"
-	],
-	"sdkVersion": "3"
+    }]}
 }
