@@ -4,6 +4,7 @@
   	"longName": "reloxo dixital en galego",
   	"companyName": "pazos",
   	"versionLabel": "0.99",
+    "enableMultiJS": true,
   	"watchapp": { 
   		"watchface": true
   	},

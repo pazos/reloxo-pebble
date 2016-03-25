@@ -1,7 +1,7 @@
 #pragma once
 
 #include "common.h"
-#include "window.h"
 
 void config_init();
+void debug(char *log, ... );
 bool config_get(int key);

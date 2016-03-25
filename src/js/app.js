@@ -1,6 +1,6 @@
-Pebble.addEventListener('ready', function (e) {
+/*Pebble.addEventListener('ready', function (e) {
     console.log('esperando mensaxes de entrada...');
-});
+}); */
 
 Pebble.addEventListener('showConfiguration', function (e) {
     // paxina web de configuracion da esfera
