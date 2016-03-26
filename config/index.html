@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html>
+  <head>
+  <title>reloxo en galego</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  </style>
+  </head>
+
   <body>
-    <center>
-    <h2>reloxo dixital</h2>
-    <p> Elixe segundo as tuas preferencias e pulsa gardar para recargar a esfera </p>
-    <table>
-      <tr><td>Mostrar dia da semana</td><td><input id='check_dia' type='checkbox'/></tr>
-      <tr><td>Mostrar dia do mes</td><td><input id='check_data' type='checkbox'/></tr>
-      <tr><td>Mostrar carga da bateria</td><td><input id='check_carga' type='checkbox'/></tr>
-      <tr><td>Invertir cores da esfera</td><td><input id='check_invertir' type='checkbox'/></tr>
-    </table>
-    <p><button id='save_button'>Gardar</button></p>
-    </center>
-    <script>
+    <h1 class='title'>configuracion do reloxo</h1>
+
+    <div class='item-container'>
+      <div class='item-container-content'>
+        <div class='item'>
+          Elixe nesta paxina como queres que se vexa a esfera
+        </div>
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='item-container-header'>elementos da interface</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          dia da semana
+          <input id='check_dia' type='checkbox' class='item-toggle' checked>
+        </label>
+        <label class='item'>
+          dia do mes
+          <input id='check_data' type='checkbox' class='item-toggle' checked>
+        </label>
+        <label class='item'>
+          carga da bateria 
+          <input id='check_carga' type='checkbox' class='item-toggle' checked>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        elixe a informacion que queres visualizar na tua esfera
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='item-container-header'>cores da interface</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          invertir cores
+          <input id='check_invertir' type='checkbox' class='item-toggle'>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        cambia a cor de fondo e do texto, branco sobre negro, ou negro sobre branco...
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='button-container'>
+        <input id='save_button' type='button' class='item-button' value='GARDAR'>
+      </div>
+    </div>
+  </body>
+  <script>
       function persistWrite(key, value) {
         localStorage.setItem(key, value);
       }
@@ -52,8 +108,7 @@
       };
 
       var submitButton = document.getElementById('save_button');
-      submitButton.addEventListener('click', 
-        function() {
+      submitButton.addEventListener('click', function() {
           var options = {
             'dia': document.getElementById('check_dia').checked ? 'true' : 'false',
             'data': document.getElementById('check_data').checked ? 'true' : 'false',
@@ -71,6 +126,5 @@
       false);
       firstTimeSetup();
       loadConfig();
-    </script>
-  </body>
+  </script>
 </html>

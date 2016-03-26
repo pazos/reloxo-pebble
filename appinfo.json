@@ -1,8 +1,8 @@
 {
-  "uuid": "be2b5393-58df-49d3-9380-bded871ccfba",
   "shortName": "reloxo",
-  "longName": "reloxo dixital en galego, bastante configurable",
   "companyName": "pazos",
+  "uuid": "be2b5393-58df-49d3-9380-bded871ccfba",
+  "longName": "reloxo dixital en galego, bastante configurable",
   "versionLabel": "1.0",
   "sdkVersion": "3",
   "enableMultiJS": true,
@@ -36,9 +36,9 @@
       "compatibility": "2.7"
     },
     {
-      	"type": "font",
-      	"name": "ROBOTO_BOLD_26",
-      	"file": "Roboto-Bold.ttf",
-      	"compatibility": "2.7"
+      "type": "font",
+      "name": "ROBOTO_BOLD_26",
+      "file": "Roboto-Bold.ttf",
+      "compatibility": "2.7"
     }]}
 }
