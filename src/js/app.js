@@ -1,5 +1,5 @@
 Pebble.addEventListener('showConfiguration', function (e) {
-    Pebble.openURL('https://dl.dropboxusercontent.com/s/xsbxc2s8o68mahi/config.html');
+    Pebble.openURL('https://rawgit.com/pazos/reloxo-pebble/master/config/index.html');
 });
 
 Pebble.addEventListener('webviewclosed', function (e) {
