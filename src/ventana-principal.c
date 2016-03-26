@@ -1,4 +1,4 @@
-#include "window.h"
+#include "ventana-principal.h"
 
 static Window *watchface;
 static Layer *battery_layer;
@@ -23,7 +23,7 @@ static void battery_update_proc(Layer *layer, GContext *ctx) {
     width = (int)(float)(((float)battery_level * 144.0F) / 100.0F);
   }
 
-  if (!config_get(INVERTIR_CORES)) {
+  if (!obter_config(INVERTIR_CORES)) {
     graphics_context_set_fill_color(ctx, GColorBlack);
     graphics_fill_rect(ctx, bounds, 0, GCornerNone);
     graphics_context_set_fill_color(ctx, GColorWhite);
@@ -46,11 +46,11 @@ static void time_callback(struct tm *tick_time, TimeUnits units_changed) {
   strcat(date_text, nomes_mes[mes]);
   strcpy(day_text, nomes_dia[dia]);
   
-  if (config_get(MOSTRAR_DIA)) {
+  if (obter_config(MOSTRAR_DIA)) {
       text_layer_set_text(day_layer, day_text);
   }
 
-  if (config_get(MOSTRAR_DATA)) {
+  if (obter_config(MOSTRAR_DATA)) {
       text_layer_set_text(date_layer, date_text);
   }
 
@@ -74,19 +74,19 @@ static void load(Window *window) {
   day_font  = font_load(RESOURCE_ID_ROBOTO_BOLD_26);
 
   // ----> comeza declaración dinámica de capas
-  if((!config_get(MOSTRAR_DATA)) && (!config_get(MOSTRAR_DIA))) {
+  if((!obter_config(MOSTRAR_DATA)) && (!obter_config(MOSTRAR_DIA))) {
     time_layer = text_layer_create(GRect(0, 48, bounds.size.w, 70));
   } else {
     time_layer = text_layer_create(GRect(0, 60, bounds.size.w, 70));
   } 
-  if(config_get(MOSTRAR_DIA)) {
+  if(obter_config(MOSTRAR_DIA)) {
     date_layer = text_layer_create(GRect(0, 40, 138, 28));
     text_layer_set_text_alignment(date_layer, GTextAlignmentRight);
   } else {
     date_layer = text_layer_create(GRect(0, 38, bounds.size.w, 28));
     text_layer_set_text_alignment(date_layer, GTextAlignmentCenter);    
   }  
-  if(config_get(MOSTRAR_DATA)) {
+  if(obter_config(MOSTRAR_DATA)) {
     day_layer = text_layer_create(GRect(0, 12, 138, 34));
     text_layer_set_text_alignment(day_layer, GTextAlignmentRight);
   } else {
@@ -97,7 +97,7 @@ static void load(Window *window) {
   // ----< fin da declaración dinámica de capas
 
   // configuramos a cor de fondo e de texto para hora, dia da semana e día do mes:
-  if (!config_get(INVERTIR_CORES)) {
+  if (!obter_config(INVERTIR_CORES)) {
     text_layer_set_text_color(time_layer, GColorWhite);
     text_layer_set_text_color(day_layer, GColorWhite);
     text_layer_set_text_color(date_layer, GColorWhite);
@@ -119,15 +119,15 @@ static void load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(time_layer));
 
   // engadimos as capas á ventana en función dos axustes:
-  if (config_get(MOSTRAR_DATA)) {
+  if (obter_config(MOSTRAR_DATA)) {
     text_layer_set_font(date_layer, date_font); 
     layer_add_child(window_get_root_layer(window), text_layer_get_layer(date_layer));
   }
-  if (config_get(MOSTRAR_DIA)) {
+  if (obter_config(MOSTRAR_DIA)) {
     text_layer_set_font(day_layer, day_font); 
     layer_add_child(window_get_root_layer(window), text_layer_get_layer(day_layer));
   }
-  if (config_get(MOSTRAR_CARGA)) {
+  if (obter_config(MOSTRAR_CARGA)) {
     layer_set_update_proc(battery_layer, battery_update_proc);
     layer_add_child(window_get_root_layer(window), battery_layer);
     layer_mark_dirty(battery_layer);
@@ -156,9 +156,9 @@ static void unload(Window *window) {
   saida_sucia = true;
 }
 
-void main_window_push() {
+void iniciar_esfera() {
   watchface = window_create();
-  if (!config_get(INVERTIR_CORES)) { 
+  if (!obter_config(INVERTIR_CORES)) { 
     window_set_background_color(watchface, GColorBlack); 
   } else { 
     window_set_background_color(watchface, GColorWhite); 
@@ -173,7 +173,7 @@ void main_window_push() {
   struct tm *tm_struct = localtime(&now);
   time_callback(tm_struct, (TimeUnits) NULL);
   tick_timer_service_subscribe(MINUTE_UNIT, time_callback);
-  if (config_get(MOSTRAR_CARGA)) {
+  if (obter_config(MOSTRAR_CARGA)) {
     battery_callback(battery_state_service_peek());
     battery_state_service_subscribe(battery_callback);
   }

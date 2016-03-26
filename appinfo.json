@@ -3,7 +3,7 @@
   "companyName": "pazos",
   "uuid": "be2b5393-58df-49d3-9380-bded871ccfba",
   "longName": "reloxo dixital en galego, bastante configurable",
-  "versionLabel": "1.0",
+  "versionLabel": "1.1",
   "sdkVersion": "3",
   "enableMultiJS": true,
   "watchapp": { 
@@ -13,7 +13,8 @@
   	"configurable"
   ],
   "targetPlatforms": [
-    "aplite"
+    "aplite",
+    "basalt"
   ],
   "appKeys": {
     "MOSTRAR_DIA": 0,
