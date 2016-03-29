@@ -1,16 +1,14 @@
 #pragma once
+#include <pebble.h> // SDK de pebble.
 
-#include <pebble.h> // SDK de pebble. 
+#define REXISTRO 	1	// -- Información da aplicación
+#define DEPURACION	1	// -- Informacion de depuración
+#define DIA			0 	// -- Comezo almacenamento local	
+#define DATA		1	//	  ...
+#define CARGA   	2	//    ...
+#define INVERTIR  	3	//    ...
+#define AXUSTES  	4	// -- Fin de almacenamento local
 
-// -- Almacenamento local	
-#define MOSTRAR_DIA		0
-#define MOSTRAR_DATA	1
-#define MOSTRAR_CARGA   2
-#define INVERTIR_CORES  3
-#define NUMERO_AXUSTES  4
-
-// -- Rexistros da aplicación
-#define HAI_QUE_REXISTRAR 	1
-#define LOG(...) if (HAI_QUE_REXISTRAR == 1) { app_log(APP_LOG_LEVEL_INFO, __FILE__, __LINE__, __VA_ARGS__); }
-
-#define esperar_eventos() app_event_loop()
+#define LOG(...) if (REXISTRO == 1) { app_log(APP_LOG_LEVEL_INFO, __FILE__, __LINE__, __VA_ARGS__); }
+#define DEBUG(...) if (DEPURACION == 1) { app_log(APP_LOG_LEVEL_DEBUG, __FILE__, __LINE__, __VA_ARGS__); }
+#define font_load(resource) fonts_load_custom_font(resource_get_handle(resource))

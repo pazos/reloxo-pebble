@@ -17,10 +17,10 @@
     "basalt"
   ],
   "appKeys": {
-    "MOSTRAR_DIA": 0,
-    "MOSTRAR_DATA": 1,
-  	"MOSTRAR_CARGA": 2,
-    "INVERTIR_CORES" : 3
+    "DIA": 0,
+    "DATA": 1,
+  	"CARGA": 2,
+    "INVERTIR" : 3
   },
   "resources": { 
   	"media": [
