@@ -3,43 +3,44 @@
   "companyName": "pazos",
   "uuid": "be2b5393-58df-49d3-9380-bded871ccfba",
   "longName": "reloxo dixital en galego, bastante configurable",
-  "versionLabel": "1.1",
+  "versionLabel": "1.2",
   "sdkVersion": "3",
   "enableMultiJS": true,
   "watchapp": { 
-    "watchface": true
+  	"watchface": true
   },
   "capabilities": [
   	"configurable"
   ],
   "targetPlatforms": [
-    "aplite",
-    "basalt"
+  	"aplite",
+  	"basalt"
   ],
   "appKeys": {
-    "DIA": 0,
-    "DATA": 1,
+  	"DIA": 0,
+  	"DATA": 1,
   	"CARGA": 2,
-    "INVERTIR" : 3
+  	"INVERTIR" : 3
   },
   "resources": { 
   	"media": [
-  	{
-	    "type": "font",
-	    "name": "ROBOTO_CONDENSED_BOLD_60",
-	    "file": "RobotoCondensed-Bold.ttf",
-	    "compatibility": "2.7"
-	  },
-    {
-      "type": "font",
-      "name": "ROBOTO_CONDENSED_BOLD_21",
-      "file": "RobotoCondensed-Bold.ttf",
-      "compatibility": "2.7"
-    },
-    {
-      "type": "font",
-      "name": "ROBOTO_BOLD_26",
-      "file": "Roboto-Bold.ttf",
-      "compatibility": "2.7"
-    }]}
+	{
+		"type": "font",
+	    	"name": "ROBOTO_CONDENSED_BOLD_60",
+	    	"file": "RobotoCondensed-Bold.ttf",
+	    	"compatibility": "2.7"
+	  	},
+    		{
+		"type": "font",
+		"name": "ROBOTO_CONDENSED_BOLD_21",
+		"file": "RobotoCondensed-Bold.ttf",
+		"compatibility": "2.7"
+		},
+		{
+		"type": "font",
+		"name": "ROBOTO_BOLD_26",
+		"file": "Roboto-Bold.ttf",
+		"compatibility": "2.7"
+    		}]
+	}
 }
