@@ -1,14 +1,7 @@
-Pebble.addEventListener('showConfiguration', function (e) {
-    Pebble.openURL('https://rawgit.com/pazos/reloxo-pebble/master/config/index.html');
-});
+// configuración da aplicación, xestionada por clay.js
+// ver ./config.json para a configuración da paxina de axustes
 
-Pebble.addEventListener('webviewclosed', function (e) {
-    var json = JSON.parse(decodeURIComponent(e.response));
-    var options = {
-        "DIA": '' + json.dia,
-        "DATA": '' + json.data,
-        "CARGA": '' + json.carga,
-        "INVERTIR": '' + json.invertir, 
-    };
-  Pebble.sendAppMessage(options, function(e){}, function(e){console.log('Settings update failed: ' + JSON.stringify(e));});
-});
+var Clay 	= require('clay');;
+var Config 	= require('config.json');
+
+var clay 	= new Clay(Config);

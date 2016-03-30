@@ -1,10 +1,11 @@
 #include "ventana.h"
 
 Window *esfera;
-Layer *capa_bateria;
-GFont fonte_hora, fonte_dia, fonte_data;
 TextLayer *capa_hora, *capa_dia, *capa_data;
-bool mostrar_dia, mostrar_data, mostrar_carga, invertir_cores;
+
+static Layer *capa_bateria;
+static GFont fonte_hora, fonte_dia, fonte_data;
+static bool mostrar_dia, mostrar_data, mostrar_carga, invertir_cores;
 
 extern int porcentaxe_bateria;
 static void actualizar_bateria(Layer *layer, GContext *ctx) {
@@ -23,22 +24,29 @@ static void actualizar_bateria(Layer *layer, GContext *ctx) {
 }
 
 static void saida(Window *window) {
-  LOG("pechando ventana");
+  DEBUG("  [SAIDA] -> deinicializando recursos da interface");
+  DEBUG("capas:           bateria[%p]", capa_bateria);
   layer_destroy(capa_bateria);
+  DEBUG("capas de texto:     hora[%p]  data[%p]  dia[%p]", capa_hora, capa_data, capa_dia);
   text_layer_destroy(capa_dia);
   text_layer_destroy(capa_data);
   text_layer_destroy(capa_hora);
+  DEBUG("pechando fontes:    hora[%p]  data[%p]  dia[%p]", 
+         fonte_hora, fonte_data, fonte_dia);
   fonts_unload_custom_font(fonte_dia);
   fonts_unload_custom_font(fonte_data);
   fonts_unload_custom_font(fonte_hora);
+  DEBUG("pechando ventana: esfera[%p]", esfera);
   window_destroy(esfera);
+  DEBUG("  [SAIDA] -> deinicializacion OK!");
 }
 
 static void entrada(Window *window) {
-  LOG("abrindo ventana");
+  DEBUG("[ENTRADA] -> iniciando recursos da interface");
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
+  DEBUG("posicionando capas na ventana");
   // inicio da posición dinámica de capas ----->
   if ((!mostrar_dia) && (!mostrar_data)) {
     capa_hora = text_layer_create(GRect(0, 48, bounds.size.w, 70));
@@ -63,6 +71,7 @@ static void entrada(Window *window) {
     text_layer_set_text_alignment(capa_data, GTextAlignmentCenter);
   } // <---------------------- fin da posición dinámica de capas
 
+  DEBUG("aplicando atributos das capas");
   // --- atributos das capas ---------------------------------
   fonte_hora = font_load(RESOURCE_ID_ROBOTO_CONDENSED_BOLD_60);
   text_layer_set_font(capa_hora, fonte_hora);
@@ -81,7 +90,9 @@ static void entrada(Window *window) {
   layer_add_child(window_get_root_layer(window), capa_bateria);
   layer_mark_dirty(capa_bateria);
 
+
   if (invertir_cores) {
+    DEBUG("invertindo cores da interface");
     text_layer_set_text_color(capa_hora, GColorBlack);
     text_layer_set_text_color(capa_dia, GColorBlack);
     text_layer_set_text_color(capa_data, GColorBlack);  
@@ -89,6 +100,7 @@ static void entrada(Window *window) {
     text_layer_set_background_color(capa_dia, GColorWhite);
     text_layer_set_background_color(capa_data, GColorWhite);
   } else {
+    DEBUG("empregando cores primarias");
     text_layer_set_text_color(capa_hora, GColorWhite);
     text_layer_set_text_color(capa_dia, GColorWhite);
     text_layer_set_text_color(capa_data, GColorWhite);
@@ -97,7 +109,7 @@ static void entrada(Window *window) {
     text_layer_set_background_color(capa_data, GColorBlack);
   } // ----------------- fin dos atributos das capas
 
-  
+  LOG("aplicando configuración do reloxo");
   // mostramos as capas en base á configuración actual:
   if (mostrar_data) {
     layer_set_hidden(text_layer_get_layer(capa_data), false);
@@ -121,19 +133,25 @@ static void entrada(Window *window) {
 void iniciar_esfera() {
   esfera = window_create();
   // configuracion permanente
+  DEBUG("-------------------------------");
+  DEBUG("obtendo configuración do reloxo");
   if(!persist_exists(1024)) {
-      // se non existe gardamos os valores por defecto:
-      persist_write_bool(1024, true); 
-      persist_write_bool(DIA, true);
-      persist_write_bool(DATA, true);
-      persist_write_bool(CARGA, true);
-      persist_write_bool(INVERTIR, false);
+    DEBUG("configuración non atopada -> PRIMEIRO ARRANQUE");
+    // se non existe gardamos os valores por defecto:
+    persist_write_bool(1024, true); 
+    persist_write_bool(DIA, true);
+    persist_write_bool(DATA, true);
+    persist_write_bool(CARGA, true);
+    persist_write_bool(INVERTIR, false);
   }
   // obtemos a configuracion actual:
   mostrar_dia = persist_read_bool(DIA);
   mostrar_data = persist_read_bool(DATA);
   mostrar_carga = persist_read_bool(CARGA);
   invertir_cores = persist_read_bool(INVERTIR);
+
+  DEBUG("Novos axustes --> dia: %d, data: %d, carga: %d, invertir: %d", mostrar_dia, mostrar_data,
+        mostrar_carga, invertir_cores);
 
   if (invertir_cores) { 
     window_set_background_color(esfera, GColorWhite); 
