@@ -1,0 +1,54 @@
+[
+	{
+		"type": 				"heading",
+		"defaultValue":			"reloxo dixital",
+		"size": 				3
+	},
+	{
+		"type":					"section",
+		"items":	
+		[
+			{
+				"type": 		"heading",
+				"defaultValue": "Elementos da interface"
+			},
+			{
+				"type": 		"toggle",
+				"label":		"mostrar día da semana",
+				"appKey":		"DIA",
+				"defaultValue":	"true"
+			},
+			{
+				"type": 		"toggle",
+				"label":		"mostrar data do mes",
+				"appKey":		"DATA",
+				"defaultValue":	"true"
+			},
+			{
+				"type": 		"toggle",
+				"label":		"mostrar carga da batería",
+				"appKey":		"CARGA",
+				"defaultValue":	"true"
+			}
+		]
+	},
+	{
+		"type":					"section",
+		"items":	
+		[
+			{
+				"type": 		"heading",
+				"defaultValue": "Cores da interface"
+			},
+			{
+				"type": 		"toggle",
+				"label":		"invertir cores",
+				"appKey":		"INVERTIR"
+			}
+		]
+	},
+	{
+		"type": 				"submit",
+		"defaultValue": 		"gardar"
+	}
+]
